@@ -304,31 +304,23 @@ void consumirServicio(String evento, int valor1, int valor2, int valor3, int val
   if (client.connect(host, 80)) { // Intentamos la conexión
     Serial.println("Conectado al servidor");
 
-    // Construimos la URL
+    // Construimos la URL. Lo vamos a enviar todo dentro del "value1" separado por |||
+    // Con este truco podemos enviar más de 3 valores (limitado por IFTTT)
+    // ya que la hoja de Google va a interpretar ||| como tabulación
     String url = "/trigger/";
     url += evento;
     url += "/with/key/";
     url += key;
-    if (valor1 >= 0) {
-      url += "?value1=";
-      url += valor1;
-    }
-    if (valor2 >= 0) {
-      url += "&value2=";
-      url += valor2;
-    }
-    if (valor3 >= 0) {
-      url += "&value3=";
-      url += valor3;
-    }
-    if (valor4 >= 0) { // TRUCO: como IFTTT sólo permite 3 valores, enviamos más valores en el mismo parámetro "valor3",
-      url += "|||";    //        separando los valores mediante tres barras horizontales |||
-      url += valor4;   //        Eso en la hoja Google se va a interpretar como que van en otra columna
-    }
-    /*if(valor5 != ""){
-      url += "|||";
-      url += valor5;
-      }*/
+    url += "?value1=";
+    url += valor1;
+    url += "|||";
+    url += valor2;
+    url += "|||";
+    url += valor3;
+    url += "|||";
+    url += valor4;
+    url += "|||";
+    url += valor5;
 
     Serial.print("Solicitando URL: "); // mostramos por el monitor serie la URL que vamos a utilizar
     Serial.println(url);
@@ -363,9 +355,9 @@ void tono(int retardo) {
   for (i = 0; i < 100; i++)
   {
     digitalWrite(PIN_ZUMBADOR, HIGH);
-    delay(retardo);//wait for 2ms
+    delay(retardo);
     digitalWrite(PIN_ZUMBADOR, LOW);
-    delay(retardo);//wait for 2ms
+    delay(retardo);
   }
 }
 
