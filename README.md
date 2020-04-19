@@ -1,6 +1,12 @@
 # AirQ
 Proyecto para un dispositivo que mida la calidad del aire basado en Arduino.
 
+## Vídeo explicativo
+
+En el siguiente enlace puede ver un vídeo explicativo del proyecto:
+
+* [Vídeo](https://youtu.be/zPH9kVz46p4)
+
 ## Especificaciones técnicas y medidas
 * Arduino UNO: (https://components101.com/microcontrollers/arduino-uno)
 * LCD: (http://www.systronix.com/access/Systronix_20x4_lcd_brief_data.pdf)
